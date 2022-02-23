@@ -1,5 +1,6 @@
 
-public class LinkedBag < T > implements BagInterface {
+public class LinkedBag < T > implements BagInterface < T > 
+{
 	
 	private Node firstNode;
 	private int numberOfEntries;
