@@ -190,7 +190,7 @@ public class ResizableArrayBag<T> implements BagInterface<T>
     } // end of "getIndexOf"
 
     /** Removes and returns the entry at a given index within the array bag.
-    @returns An entry that is being removed, or null uf bi such entry exists. */
+    @returns An entry that is being removed, or null if no such entry exists. */
     private T removeEntry(int givenIndex)
     {
         T result = null;
