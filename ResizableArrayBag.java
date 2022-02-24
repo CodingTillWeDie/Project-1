@@ -58,7 +58,7 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         }
 
         // copy the second bag.
-        T[] array2= aBag.toArray(); 
+        T[] array2 = aBag.toArray(); 
         for (index = 0; index < aBag.getCurrentSize(); index++)
         {
             newBag.add(array2[index]);
