@@ -34,23 +34,37 @@ public class ResizableArrayBag<T> implements BagInterface<T>
 
     /** Combines two collections consisting their contents into a new collection.
      @return A newly allocated collection that combined two bags. */
-    public T[] union(ResizableArrayBag<T> aBag)
+    public BagInterface<T> union(BagInterface<T> aBag)
     {
-        // the case is safe because the new array contains null entries.
-        @SuppressWarnings("unchecked")
-        T[] newBag = (T[])new Object[numberOfEntries + aBag.getCurrentSize()];
+        // check to see if both bags are empty.
+        if (isEmpty() && aBag.isEmpty())
+        {
+            // if so, return null because the union of
+            // these two bags do not exist.
+            return null;
+        }
+        // otherwise, return a newly allocated array bag that is
+        // a combination of the entries from both of the bags.
+
+        // allow interoperability for this union method.
+        BagInterface<T> newBag = new ResizableArrayBag<>();
         int index = 0;
 
-        for (; index < getCurrentSize(); index++)
+        // copy the first bag.
+        T[] array1 = this.toArray();
+        for (; index < this.getCurrentSize(); index++)
         {
-            newBag[index] = bag[index];
+            newBag.add(array1[index]);
         }
 
+        // copy the second bag.
+        T[] array2= aBag.toArray(); 
         for (index = 0; index < aBag.getCurrentSize(); index++)
         {
-            newBag[getCurrentSize() + index] = aBag[index];
+            newBag.add(array2[index]);
         }
 
+        // return the union of the two bags.
         return newBag;
     } // end of "union"
 
