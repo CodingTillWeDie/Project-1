@@ -5,7 +5,7 @@ public class ResizableArrayBag<T> implements BagInterface<T>
     private T[] bag;
     private static final int DEFAULT_CAPACITY = 25;
     private int numberOfEntries;
-    private boolean integrityOK = false;
+    private final boolean integrityOK;
     private static final int MAX_CAPACITY = 10000;
 
     /** Creates an empty bag with an initial capacity of 25. */
@@ -125,7 +125,6 @@ public class ResizableArrayBag<T> implements BagInterface<T>
      * first bag will simply be disregarded, and the
      * "difference" does not affect the contents of two bags.
      *
-     * @param aBag
      * @return A new bag that is the difference of two bags.
      */
     public BagInterface<T> difference(BagInterface<T> aBag) {
@@ -183,11 +182,7 @@ public class ResizableArrayBag<T> implements BagInterface<T>
      @returns true if bag is full, false otherwise. */
     public boolean isFull()
     {
-        if (numberOfEntries == bag.length)
-        {
-            return true;
-        }
-        return false;
+        return numberOfEntries == bag.length;
     } // end of "isFull"
 
     /** Throws an exception if the client requests a capacity that is too large. */
@@ -268,11 +263,10 @@ public class ResizableArrayBag<T> implements BagInterface<T>
     public T remove()
     {
         checkIntegrity();
-        T result = removeEntry(numberOfEntries - 1);
-        return result;
+        return removeEntry(numberOfEntries - 1);
     } // end of "remove"
 
-    /** Removes one occurence of a given entry from this bag.
+    /** Removes one occurrence of a given entry from this bag.
      @param anEntry : The entry to be removed.
      @return True if the removal was successful, false otherwise. */
     public boolean remove(T anEntry)
@@ -323,10 +317,8 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         //the cast is safe because the new array contains null entries
         @SuppressWarnings("unchecked")
         T[] result = (T[])new Object[numberOfEntries];
-        for (int i = 0; i < numberOfEntries; i++)
-        {
-            result[i] = bag[i];
-        } //end for loop
+        //end for loop
+        System.arraycopy(bag, 0, result, 0, numberOfEntries);
         return result;
     } // end of "toArray"
 
