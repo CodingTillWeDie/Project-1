@@ -16,8 +16,16 @@ public class LinkedBag < T > implements BagInterface < T >
      	@return The removed entry if the removal was successful, or null otherwise. */
     	public T remove()
     	{
+		T result = null; 
+		if(firstNode != null)
+		{
+			result = firstNode.getData();
+			firstNode = firstNode.getNextNode();//Remove the first node from the chain
+			numberofEntries--;
+		}//end if
 		
-    	} // end of "remove"
+		return result;
+	}//end remove
 	/** Sees whether this bag is empty.
 
 	@return True if this bag is empty, or false if not. */
