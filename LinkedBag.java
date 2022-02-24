@@ -12,6 +12,14 @@ public class LinkedBag < T > implements BagInterface < T >
 	}
 	//implementation of methods based on bagInterface>>>
 	
+	/** Removes one unspecified entry from this bag, if possible.
+     @return The removed entry if the removal was successful, or null otherwise. */
+    public T remove()
+    {
+        checkIntegrity();
+        T result = removeEntry(numberOfEntries - 1);
+        return result;
+    } // end of "remove"
 	private class Node
 	{
 		private T data;
