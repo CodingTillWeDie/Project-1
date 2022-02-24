@@ -41,6 +41,7 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         {
             // if so, return null because the union of
             // these two bags do not exist.
+            System.out.println("Both bags are empty.");
             return null;
         }
         // otherwise, return a newly allocated array bag that is
@@ -58,7 +59,7 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         }
 
         // copy the second bag.
-        T[] array2 = aBag.toArray(); 
+        T[] array2= aBag.toArray();
         for (index = 0; index < aBag.getCurrentSize(); index++)
         {
             newBag.add(array2[index]);
@@ -70,50 +71,92 @@ public class ResizableArrayBag<T> implements BagInterface<T>
 
     /** Determines whether the first bag's entries match any of the second bag's entries.
      @return A new collection of the overlapping entries. */
-    public T[] intersection(ResizableArrayBag<T> aBag)
-    {
-        // check to see if both of the bags are empty.
-        if (isEmpty() && aBag.isEmpty())
-        {
-            // if so, simply return an empty array.
-            @SuppressWarnings("unchecked")
-            T[] newBag = null;
+    public BagInterface<T> intersection(BagInterface<T> aBag) {
+        // check to see if both bags are empty.
+        if (isEmpty() && aBag.isEmpty()) {
+            // if so, return null because the intersection of
+            // these two bags does not exist.
+            System.out.println("Both bags are empty.");
+            return null;
         }
+        // otherwise, return a newly allocated array bag that is
+        // the result of finding the entries that occur in both bags.
 
-        // otherwise, return a new array that contains overlapping entries.
-        @SuppressWarnings("unchecked")
-        T[] newBag = (T[])new Object[DEFAULT_CAPACITY];
-        T entry;
-        int index = 0;
-        // iteration of the outer loop will represent the first bag's entries.
-        for (int i = 0; i < getCurrentSize(); i++)
-        {
-            entry = bag[i];
+        // allow interoperability for this union method.
+        BagInterface<T> newBag = new ResizableArrayBag<>();
+        T[] array1 = this.toArray(); //copy first bag
+        T[] array2 = aBag.toArray(); //copy second bag
+
+// iteration of the outer loop will represent the first bag's entries.
+        for (int i = 0; i < this.getCurrentSize(); i++) {
+            int counter1 = this.getFrequencyOf(array1[i]);
+
             // iteration of the inner loop will represent the second bag's entries.
-            for (int j = 0; j < aBag.getCurrentSize(); j++)
-            {
+            for (int j = 0; j < aBag.getCurrentSize(); j++) {
+                int counter2 = aBag.getFrequencyOf(array2[j]);
+
                 // check to see if the second bag's entries
                 // match any of the first bag's entries.
-                if (entry == aBag[j])
-                {
-                    newBag[index] = entry;
-                    ++index;
+                if (array1[i] == array2[j]) {
+                    // check to see if all the overlapping entries
+                    // have been to the bag already.
+                    if ((newBag.getFrequencyOf(array1[i]) == counter1) ||
+                            (newBag.getFrequencyOf(array2[j]) == counter2)) {
+                        // if so, break out of the inner for loop
+                        // in order to prevent re-adding the entry.
+                        break;
+                    }
+                    // otherwise, add the overlapping entry
+                    // into the intersection bag.
+                    else {
+                        newBag.add(array1[i]);
+                    }
                 }
             }
         }
-
         return newBag;
-    } // end of "intersection"
+    }
 
 
-    /** Removes entries in the second bag from the first bag.
-     * NOTE: The entries that are in the second bag but
-     *       not in the first bag will simply be disregarded.
-     @return A copy of the first bag that simply contains the leftover entries. */
-    public T[] difference(ResizableArrayBag<T> aBag)
-    {
+    /**
+     * Removes entries in the second bag from the first bag
+     * and puts the leftover entries in a new collection.
+     * The entries that are in the second bag but not the
+     * first bag will simply be disregarded, and the
+     * "difference" does not affect the contents of two bags.
+     *
+     * @param aBag
+     * @return A new bag that is the difference of two bags.
+     */
+    public BagInterface<T> difference(BagInterface<T> aBag) {
+        // check to see if both bags are empty.
+        if (isEmpty() && aBag.isEmpty())
+        {
+            // if so, return null because the difference of
+            // these two bags does not exist.
+            System.out.println("Both bags are empty.");
+            return null;
+        }
+        // otherwise, return a newly allocated array bag that is
+        // the result of removing the entries that occur in both bags.
 
-    } // end of "difference"
+        // allow interoperability for this union method.
+        BagInterface <T> newBag = new ResizableArrayBag<>();
+        int index = 0;
+        T[] array1 = this.toArray(); //copy first bag
+        for (; index < this.getCurrentSize(); index++)
+        {
+            newBag.add(array1[index]);
+        }
+        T[] array2 = aBag.toArray(); //copy second bag
+        for (index = 0; index < aBag.getCurrentSize(); index++)
+        {
+            if(newBag.contains(array2[index])){
+                newBag.remove(array2[index]);
+            }
+        }
+        return newBag;
+    } //end difference
 
     /** Gets the current number of entries in this bag.
      @return The integer number of entries in the bag currently. */
@@ -204,7 +247,7 @@ public class ResizableArrayBag<T> implements BagInterface<T>
     } // end of "getIndexOf"
 
     /** Removes and returns the entry at a given index within the array bag.
-    @returns An entry that is being removed, or null if no such entry exists. */
+     @returns An entry that is being removed, or null uf bi such entry exists. */
     private T removeEntry(int givenIndex)
     {
         T result = null;
@@ -286,5 +329,5 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         } //end for loop
         return result;
     } // end of "toArray"
-    
-}
+
+}//end of ResizableArrayBag
