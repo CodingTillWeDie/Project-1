@@ -169,8 +169,80 @@ public class LinkedBag < T > implements BagInterface < T >
 			next = nextNode;
 		}
 	}
-	
-	
+	/** Tests whether this bag contains a given entry.
+
+	@param anEntry The entry to locate.
+
+	@return True if the bag contains anEntry, or false otherwise. */
+
+	public boolean contains(T anEntry)
+
+	{
+
+		boolean found = false;
+
+		Node currentNode = firstNode;
+
+		while (!found && (currentNode != null))
+
+		{
+
+			if (anEntry.equals(currentNode.data))
+
+				found = true;
+
+			else
+
+				currentNode = currentNode.next;
+
+		} // end while
+
+		return found;
+
+	} // end contains
+	// Locates a given entry within this bag.
+
+	// Returns a reference to the node containing the entry, if located,
+
+	// or null otherwise.
+
+	private Node getReferenceTo(T anEntry)
+
+	{
+
+		boolean found = false;
+
+		Node currentNode = firstNode;
+
+		while (!found && (currentNode != null))
+
+		{
+
+			if (anEntry.equals(currentNode.data))
+
+			found = true;
+
+			else
+
+				currentNode = currentNode.next;
+
+		} // end while
+
+		return currentNode;
+
+	} // end getReferenceTo
+
+	/** Removes all entries from this bag. */
+
+	public void clear()
+
+	{
+
+		while (!isEmpty())
+
+			remove();
+
+	} // end clear
 	
 
 }
