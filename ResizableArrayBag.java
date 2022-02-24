@@ -73,7 +73,8 @@ public class ResizableArrayBag<T> implements BagInterface<T>
      @return A new collection of the overlapping entries. */
     public BagInterface<T> intersection(BagInterface<T> aBag) {
         // check to see if both bags are empty.
-        if (isEmpty() && aBag.isEmpty()) {
+        if (isEmpty() && aBag.isEmpty()) 
+        {
             // if so, return null because the intersection of
             // these two bags does not exist.
             System.out.println("Both bags are empty.");
@@ -87,28 +88,33 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         T[] array1 = this.toArray(); //copy first bag
         T[] array2 = aBag.toArray(); //copy second bag
 
-// iteration of the outer loop will represent the first bag's entries.
-        for (int i = 0; i < this.getCurrentSize(); i++) {
+        // iteration of the outer loop will represent the first bag's entries.
+        for (int i = 0; i < this.getCurrentSize(); i++) 
+        {
             int counter1 = this.getFrequencyOf(array1[i]);
 
             // iteration of the inner loop will represent the second bag's entries.
-            for (int j = 0; j < aBag.getCurrentSize(); j++) {
+            for (int j = 0; j < aBag.getCurrentSize(); j++) 
+            {
                 int counter2 = aBag.getFrequencyOf(array2[j]);
 
                 // check to see if the second bag's entries
                 // match any of the first bag's entries.
-                if (array1[i] == array2[j]) {
+                if (array1[i] == array2[j]) 
+                {
                     // check to see if all the overlapping entries
                     // have been to the bag already.
                     if ((newBag.getFrequencyOf(array1[i]) == counter1) ||
-                            (newBag.getFrequencyOf(array2[j]) == counter2)) {
+                            (newBag.getFrequencyOf(array2[j]) == counter2)) 
+                    {
                         // if so, break out of the inner for loop
                         // in order to prevent re-adding the entry.
                         break;
                     }
                     // otherwise, add the overlapping entry
                     // into the intersection bag.
-                    else {
+                    else 
+                    {
                         newBag.add(array1[i]);
                     }
                 }
