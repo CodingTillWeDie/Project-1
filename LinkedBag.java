@@ -16,16 +16,16 @@ public class LinkedBag<T> implements BagInterface<T>
     public BagInterface<T> union(BagInterface<T> aBag)
     {
         // check to see if both bags are empty.
+        BagInterface<T> newBag = new LinkedBag<>();
         if (isEmpty() && aBag.isEmpty())
         {
             // if so, return null because the union of
             // these two bags do not exist.
             System.out.println("Both bags are empty.");
-            return null;
+            return newBag;
         }
         // otherwise, return a newly allocated array bag that is
         // a combination of the entries from both of the bags.
-        BagInterface<T> newBag = new LinkedBag<>();
         int index = 0;
 
         // copy the first bag.
@@ -51,17 +51,17 @@ public class LinkedBag<T> implements BagInterface<T>
      @return A new collection of the overlapping entries. */
     public BagInterface<T> intersection(BagInterface<T> aBag)
     {
+        BagInterface<T> newBag = new LinkedBag<>();
         // check to see if both of the bags are empty.
         if (isEmpty() && aBag.isEmpty())
         {
             // if so, simply return null because the
             // intersection of these two bags do not exist.
             System.out.println("Both bags are empty.");
-            return null;
+            return newBag;
         }
 
         // allow interoperability.
-        BagInterface<T> newBag = new LinkedBag<>();
         T[] bag1 = this.toArray();
         T[] bag2 = aBag.toArray();
 
@@ -110,19 +110,19 @@ public class LinkedBag<T> implements BagInterface<T>
      @return A copy of the first bag that simply contains the leftover entries. */
     public BagInterface<T> difference(BagInterface<T> aBag)
     {
+        BagInterface <T> newBag = new ResizableArrayBag<>();
         // check to see if both of the bags are empty.
         if (isEmpty() && aBag.isEmpty())
         {
             // if so, simply return null because the
             // difference of these two bags do not exist.
             System.out.println("Both bags are empty.");
-            return null;
+            return newBag;
         }
         // otherwise, return a newly allocated array bag that is
         // the result of removing the entries that occur in both bags.
 
         // allow interoperability for this union method.
-        BagInterface <T> newBag = new ResizableArrayBag<>();
         int index = 0;
 
         // copy the first bag.
@@ -227,21 +227,21 @@ public class LinkedBag<T> implements BagInterface<T>
      @return  The number of times anEntry appears in the bag. */
     public int getFrequencyOf(T anEntry)
     {
-    	int frequency = 0;
-    	
-    	int counter =0; 
-    	Node currentNode = firstNode;
-    	while((counter<numberOfEntries)&&(currentNode!=null))
-    	{
-    		if(anEntry.equals(currentNode.getData()))
-    		{
-    			frequency++;
-    		}//end if
-    		counter++;
-    		currentNode=currentNode.getNextNode();
-    	}//end while
-    	return frequency;
-    	
+        int frequency = 0;
+
+        int counter =0;
+        Node currentNode = firstNode;
+        while((counter<numberOfEntries)&&(currentNode!=null))
+        {
+            if(anEntry.equals(currentNode.getData()))
+            {
+                frequency++;
+            }//end if
+            counter++;
+            currentNode=currentNode.getNextNode();
+        }//end while
+        return frequency;
+
     } // end of "getFrequencyOf"
 
     /** Tests whether this bag contains a given entry.
@@ -319,19 +319,19 @@ public class LinkedBag<T> implements BagInterface<T>
             data = dataPortion;
             next = nextNode;
         } // end of type constructor #2
-        private T getData() 
+        private T getData()
         {
-        	return data;
+            return data;
         }// end getData
         private Node getNextNode()
         {
-        	return next;
+            return next;
         }//end getNextNode
     } // end of "Node" class
 
-	@Override
-	public boolean isFull() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    public boolean isFull() {
+        // TODO Auto-generated method stub
+        return false;
+    }
 }
