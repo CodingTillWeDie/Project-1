@@ -42,7 +42,8 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         {
             // if so, return null because the union of
             // these two bags do not exist.
-            System.out.println("Both bags are empty.");
+            System.out.print("Both bags are empty...");
+            System.out.println("The union of these two bags do not exist...");
             return newBag;
         }
         // otherwise, return a newly allocated array bag that is
@@ -71,13 +72,16 @@ public class ResizableArrayBag<T> implements BagInterface<T>
 
     /** Determines whether the first bag's entries match any of the second bag's entries.
      @return A new collection of the overlapping entries. */
-    public BagInterface<T> intersection(BagInterface<T> aBag) {
+    public BagInterface<T> intersection(BagInterface<T> aBag) 
+    {
         BagInterface<T> newBag = new ResizableArrayBag<>();
         // check to see if both bags are empty.
-        if (isEmpty() && aBag.isEmpty()) {
-            // if so, return null because the intersection of
+        if (isEmpty() && aBag.isEmpty()) 
+        {
+            // if so, return an empty bag because the intersection of
             // these two bags does not exist.
-            System.out.println("Both bags are empty.");
+            System.out.print("Both bags are empty...");
+            System.out.println("The intersection of these two bags does not exist...");
             return newBag;
         }
         // otherwise, return a newly allocated array bag that is
@@ -132,9 +136,10 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         // check to see if both bags are empty.
         if (isEmpty() && aBag.isEmpty())
         {
-            // if so, return null because the difference of
+            // if so, return an empty bag because the difference of
             // these two bags does not exist.
-            System.out.println("Both bags are empty.");
+            System.out.print("Both bags are empty...");
+            System.out.println("The difference of these two bags does not exist...");
             return newBag;
         }
         // otherwise, return a newly allocated array bag that is
