@@ -42,8 +42,7 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         {
             // if so, return null because the union of
             // these two bags do not exist.
-            System.out.print("Both bags are empty...");
-            System.out.println("The union of these two bags do not exist...");
+            System.out.println("Both bags are empty.");
             return newBag;
         }
         // otherwise, return a newly allocated array bag that is
@@ -72,16 +71,13 @@ public class ResizableArrayBag<T> implements BagInterface<T>
 
     /** Determines whether the first bag's entries match any of the second bag's entries.
      @return A new collection of the overlapping entries. */
-    public BagInterface<T> intersection(BagInterface<T> aBag) 
-    {
+    public BagInterface<T> intersection(BagInterface<T> aBag) {
         BagInterface<T> newBag = new ResizableArrayBag<>();
         // check to see if both bags are empty.
-        if (isEmpty() && aBag.isEmpty()) 
-        {
-            // if so, return an empty bag because the intersection of
+        if (isEmpty() && aBag.isEmpty()) {
+            // if so, return null because the intersection of
             // these two bags does not exist.
-            System.out.print("Both bags are empty...");
-            System.out.println("The intersection of these two bags does not exist...");
+            System.out.println("Both bags are empty.");
             return newBag;
         }
         // otherwise, return a newly allocated array bag that is
@@ -136,10 +132,9 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         // check to see if both bags are empty.
         if (isEmpty() && aBag.isEmpty())
         {
-            // if so, return an empty bag because the difference of
+            // if so, return null because the difference of
             // these two bags does not exist.
-            System.out.print("Both bags are empty...");
-            System.out.println("The difference of these two bags does not exist...");
+            System.out.println("Both bags are empty.");
             return newBag;
         }
         // otherwise, return a newly allocated array bag that is
@@ -184,12 +179,6 @@ public class ResizableArrayBag<T> implements BagInterface<T>
         return numberOfEntries == 0;
     } // end of "isEmpty"
 
-    /** Determines whether the bag is full or not.
-     @returns true if bag is full, false otherwise. */
-    public boolean isFull()
-    {
-        return numberOfEntries == bag.length;
-    } // end of "isFull"
 
     /** Throws an exception if the client requests a capacity that is too large. */
     private void checkCapacity(int capacity)
@@ -215,7 +204,7 @@ public class ResizableArrayBag<T> implements BagInterface<T>
     {
         checkIntegrity();
 
-        if (isFull())
+        if (numberOfEntries == bag.length)
         {
             doubleCapacity();
         } // end of if-statement
@@ -230,6 +219,11 @@ public class ResizableArrayBag<T> implements BagInterface<T>
      @return The index of the entry if located, or -1 otherwise. */
     private int getIndexOf(T anEntry)
     {
+        // check to see if there is a null entry
+        if (anEntry == null)
+        {
+            return 0;
+        }
         int where = -1;
         boolean found = false;
         int i = 0;
@@ -296,6 +290,11 @@ public class ResizableArrayBag<T> implements BagInterface<T>
     public int getFrequencyOf(T anEntry)
     {
         checkIntegrity();
+        // check to see if there is a null entry
+        if (anEntry == null)
+        {
+            return 0;
+        }
         int counter = 0;
 
         for (int i = 0; i < numberOfEntries; i++)
@@ -314,6 +313,11 @@ public class ResizableArrayBag<T> implements BagInterface<T>
     public boolean contains(T anEntry)
     {
         checkIntegrity();
+        // check to see if there is a null entry
+        if (anEntry == null)
+        {
+            return false;
+        }
         return getIndexOf(anEntry) > -1; // or >= 0
     } // end of "contains"
 
