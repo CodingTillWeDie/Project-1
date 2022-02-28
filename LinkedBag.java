@@ -329,9 +329,5 @@ public class LinkedBag<T> implements BagInterface<T>
         }//end getNextNode
     } // end of "Node" class
 
-    @Override
-    public boolean isFull() {
-        // TODO Auto-generated method stub
-        return false;
-    }
+
 }
