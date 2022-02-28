@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class BagDriver
 {
-    public static void main(String[] args) throws ArrayIndexOutOfBoundsException, NullPointerException
+    public static void main(String[] args) throws NullPointerException
     {
         int choice1;
         int counter = 10000;
