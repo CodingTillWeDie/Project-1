@@ -28,7 +28,7 @@ class LinkedBagTest {
         bag2.add("B");
         bag2.add("D");
         bag2.add("E");
-        System.out.println(Arrays.toString(bag1.intersection(bag2).toArray())); //Prints the union of the two bags
+        System.out.println(Arrays.toString(bag1.intersection(bag2).toArray())); //Prints the intersection of the two bags
     }
 
     @Test
@@ -41,15 +41,15 @@ class LinkedBagTest {
         bag2.add("D");
         bag2.add("E");
         System.out.println("Difference of bag1 to bag2");
-        System.out.println(Arrays.toString(bag1.difference(bag2).toArray())); //Prints the union of the two bags
+        System.out.println(Arrays.toString(bag1.difference(bag2).toArray())); //Prints the difference of bag1 to bag2
         System.out.println("Difference of bag2 to bag1");
-        System.out.println(Arrays.toString(bag2.difference(bag1).toArray())); //Prints the union of the two bags
+        System.out.println(Arrays.toString(bag2.difference(bag1).toArray())); //Prints the difference of bag2 to bag1
     }
 
     @Test
     void add() {
         bag1.add("A");
-        System.out.println(Arrays.toString(bag1.toArray()));
+        System.out.println(Arrays.toString(bag1.toArray())); //Prints [A]
     }
 
     @Test
@@ -57,7 +57,7 @@ class LinkedBagTest {
         bag1.add("A");
         bag1.add("B");
         bag1.remove("A");
-        System.out.println(Arrays.toString(bag1.toArray()));
+        System.out.println(Arrays.toString(bag1.toArray())); //Prints [B]
     }
 
     @Test
@@ -65,7 +65,7 @@ class LinkedBagTest {
         bag1.add("A");
         bag1.add("B");
         bag1.remove();
-        System.out.println(Arrays.toString(bag1.toArray()));
+        System.out.println(Arrays.toString(bag1.toArray())); //Prints [A]
     }
 
     @Test
@@ -81,7 +81,7 @@ class LinkedBagTest {
         bag1.add("B");
         bag1.add("C");
         bag1.add("D");
-        System.out.println(Arrays.toString(new int[]{bag1.getCurrentSize()}));
+        System.out.println(Arrays.toString(new int[]{bag1.getCurrentSize()})); //Prints [4]
     }
 
     @Test
@@ -93,7 +93,7 @@ class LinkedBagTest {
         bag1.add("E");
         bag1.add("F");
         bag1.clear();
-        System.out.println(Arrays.toString(bag1.toArray()));
+        System.out.println(Arrays.toString(bag1.toArray())); //Prints []
     }
 
     @Test
@@ -102,7 +102,7 @@ class LinkedBagTest {
         bag1.add("A");
         bag1.add("B");
         bag1.add("B");
-        System.out.println(Arrays.toString(new int[]{bag1.getFrequencyOf("A")}));
+        System.out.println(Arrays.toString(new int[]{bag1.getFrequencyOf("A")})); //Prints [2]
     }
 
     @Test
@@ -121,7 +121,7 @@ class LinkedBagTest {
         bag1.add("D");
         bag1.add("E");
         bag1.add("F");
-        System.out.println(Arrays.toString(bag1.toArray()));
+        System.out.println(Arrays.toString(bag1.toArray())); //Prints [A, B, C, D, E, F]
     }
 
 }
