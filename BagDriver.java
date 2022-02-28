@@ -169,6 +169,12 @@ public class BagDriver
                     System.out.println("Terminating the program... Goodbye!");
                     break;
                 }
+                // check to see if the user has entered an invalid response.
+                else
+                {
+                    System.out.println("Invalid user response... Terminating the program.");
+                    break;
+                }
             }
             // allow the user to perform union, intersection, and
             // difference methods on two LinkedBags.
@@ -318,6 +324,18 @@ public class BagDriver
                     System.out.println("Terminating the program... Goodbye!");
                     break;
                 }
+                // check to see if the user has entered an invalid response.
+                else
+                {
+                    System.out.println("Invalid user response... Terminating the program.");
+                    break;
+                }
+            }
+            // check to see if the user has entered an invalid response.
+            else
+            {
+                System.out.println("Invalid user response... Terminating the program.");
+                break;
             }
         } // end of for loop.
     } // end of main.
