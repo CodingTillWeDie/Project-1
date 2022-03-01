@@ -15,16 +15,26 @@ public class LinkedBag<T> implements BagInterface<T>
      @return A newly allocated collection that combined two bags. */
     public BagInterface<T> union(BagInterface<T> aBag)
     {
-        // check to see if both bags are empty.
+        // create a newly allocated bag.
         BagInterface<T> newBag = new LinkedBag<>();
+
+        // check to see if either one of the two bags is null.
+        if ((null == this) || (null == aBag))
+        {
+            // if so, return an empty bag because the union of
+            // these two bags does not exist.
+            System.out.print("A null bag was found...");
+            return newBag;
+        }
+        // then check to see if both bags are empty.
         if (isEmpty() && aBag.isEmpty())
         {
-            // if so, return null because the union of
-            // these two bags do not exist.
+            // if so, simply return an empty bag because
+            // the union of these two bags do not exist.
             System.out.println("Both bags are empty.");
             return newBag;
         }
-        // otherwise, return a newly allocated array bag that is
+        // otherwise, return the newly allocated linked bag that is
         // a combination of the entries from both of the bags.
         int index = 0;
 
@@ -51,17 +61,29 @@ public class LinkedBag<T> implements BagInterface<T>
      @return A new collection of the overlapping entries. */
     public BagInterface<T> intersection(BagInterface<T> aBag)
     {
+        // create a newly allocated bag.
         BagInterface<T> newBag = new LinkedBag<>();
-        // check to see if both of the bags are empty.
-        if (isEmpty() && aBag.isEmpty())
+
+        // check to see if either one of the two bags is null.
+        if ((null == this) || (null == aBag))
         {
-            // if so, simply return null because the
+            // if so, return an empty bag because the
+            // intersection of these two bags does not exist.
+            System.out.print("A null bag was found...");
+            return newBag;
+        }
+        // then check to see if both bags are empty.
+        if (isEmpty() || aBag.isEmpty())
+        {
+            // if so, simply return an empty bag because the
             // intersection of these two bags do not exist.
             System.out.println("Both bags are empty.");
             return newBag;
         }
+        // otherwise, return the newly allocated linked bag that
+        // contains overlapping entries from both of the bags.
 
-        // allow interoperability.
+        // convert the two bags into arrays.
         T[] bag1 = this.toArray();
         T[] bag2 = aBag.toArray();
 
@@ -80,7 +102,7 @@ public class LinkedBag<T> implements BagInterface<T>
                 if (bag1[i] == bag2[j])
                 {
                     // check to see if all the overlapping entries
-                    // have been to the bag already.
+                    // have been added to the bag already.
                     if ((newBag.getFrequencyOf(bag1[i]) == counter1) ||
                             (newBag.getFrequencyOf(bag2[j]) == counter2))
                     {
@@ -95,12 +117,11 @@ public class LinkedBag<T> implements BagInterface<T>
                         newBag.add(bag1[i]);
                     }
                 }
-            }
-        }
+            } // end of inner for loop.
+        } // end of outer for loop.
 
         // return the intersection of the two bags.
         return newBag;
-
     } // end of "intersection"
 
 
@@ -110,19 +131,27 @@ public class LinkedBag<T> implements BagInterface<T>
      @return A copy of the first bag that simply contains the leftover entries. */
     public BagInterface<T> difference(BagInterface<T> aBag)
     {
+        // create a newly allocated bag.
         BagInterface <T> newBag = new ResizableArrayBag<>();
-        // check to see if both of the bags are empty.
+
+        // check to see if either one of the two bags is null.
+        if ((null == this) || (null == aBag))
+        {
+            // if so, return an empty bag because the
+            // intersection of these two bags does not exist.
+            System.out.print("A null bag was found...");
+            return newBag;
+        }
+        // then check to see if both bags are empty.
         if (isEmpty() && aBag.isEmpty())
         {
-            // if so, simply return null because the
+            // if so, simply return an empty bag because the
             // difference of these two bags do not exist.
             System.out.println("Both bags are empty.");
             return newBag;
         }
-        // otherwise, return a newly allocated array bag that is
+        // otherwise, return a newly allocated bag that is
         // the result of removing the entries that occur in both bags.
-
-        // allow interoperability for this union method.
         int index = 0;
 
         // copy the first bag.
@@ -136,14 +165,20 @@ public class LinkedBag<T> implements BagInterface<T>
         T[] bag2 = aBag.toArray();
         for (index = 0; index < aBag.getCurrentSize(); index++)
         {
+            // check to see if the second bag's entries
+            // match the first bag's entry.
             if (newBag.contains(bag2[index]))
             {
+                // if so, remove it from the new bag before
+                // returning the new bag back to the caller.
                 newBag.remove(bag2[index]);
             }
         }
 
         // return the copy of the first bag that simply contains
-        // leftover entries after removing the second bag's entries.
+        // leftover entries after removing the second bag's entries
+        // from the first bag and disregarding the entries that are
+        // in the second bag but not the first bag.
         return newBag;
     } // end of "difference"
 
@@ -154,9 +189,9 @@ public class LinkedBag<T> implements BagInterface<T>
     {
         // Add to beginning of chain:
         Node newNode = new Node(newEntry);
-        newNode.next = firstNode;  // Make new node reference rest of chain
-        // (firstNode is null if chain is empty)
-        firstNode = newNode;       // New node is at beginning of chain
+        newNode.next = firstNode;  // Make new node reference rest of chain.
+        // firstNode will be null if chain is empty.
+        firstNode = newNode;       // New node is at beginning of chain.
         numberOfEntries++;
 
         return true;
@@ -212,7 +247,6 @@ public class LinkedBag<T> implements BagInterface<T>
         return numberOfEntries;
     } // end of "getCurrentSize"
 
-
     /** Removes all entries from this bag. */
     public void clear()
     {
@@ -228,18 +262,18 @@ public class LinkedBag<T> implements BagInterface<T>
     public int getFrequencyOf(T anEntry)
     {
         int frequency = 0;
-
-        int counter =0;
+        int counter = 0;
         Node currentNode = firstNode;
-        while((counter<numberOfEntries)&&(currentNode!=null))
+
+        while ((counter < numberOfEntries) && (currentNode != null))
         {
-            if(anEntry.equals(currentNode.getData()))
+            if (anEntry.equals(currentNode.getData()))
             {
                 frequency++;
-            }//end if
+            } //end if
             counter++;
-            currentNode=currentNode.getNextNode();
-        }//end while
+            currentNode = currentNode.getNextNode();
+        } //end while
         return frequency;
 
     } // end of "getFrequencyOf"
@@ -302,7 +336,7 @@ public class LinkedBag<T> implements BagInterface<T>
         } // end while
 
         return currentNode;
-    } // end getReferenceTo
+    } // end of "getReferenceTo"
 
     private class Node
     {
@@ -319,15 +353,16 @@ public class LinkedBag<T> implements BagInterface<T>
             data = dataPortion;
             next = nextNode;
         } // end of type constructor #2
+
         private T getData()
         {
             return data;
-        }// end getData
+        } // end of "getData"
+
         private Node getNextNode()
         {
             return next;
-        }//end getNextNode
+        } //end of "getNextNode"
+
     } // end of "Node" class
-
-
-}
+} // end of "LinkedBag"
