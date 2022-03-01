@@ -35,7 +35,8 @@ public class BagDriver
                 System.out.println("(3) Test Case #3: Two of the Same Bags #2");
                 System.out.println("(4) Test Case #4: Two Distinct Bags");
                 System.out.println("(5) Test Case #5: Two Empty Bags");
-                System.out.println("(6) Exit the Program");
+                System.out.println("(6) Test Case #6: Null Bags");
+                System.out.println("(7) Exit the Program");
                 choice2 = keyboard.nextInt();
                 // clear the buffer.
                 keyboard.nextLine();
@@ -161,8 +162,23 @@ public class BagDriver
                     System.out.print("Result of Difference from the second bag to the first: ");
                     System.out.println(Arrays.toString(bag2.difference(bag1).toArray()));
                 }
-                // check to see if the user wishes to terminate the program.
                 else if (choice2 == 6)
+                {
+                    bag1.clear();
+                    bag2.clear();
+
+
+                    System.out.print("Result of Union: ");
+                    System.out.println(Arrays.toString(bag1.union(null).toArray()));
+                    System.out.print("Result of Intersection: ");
+                    System.out.println(Arrays.toString(bag1.intersection(null).toArray()));
+                    System.out.print("Result of Difference from the first bag to the second: ");
+                    System.out.println(Arrays.toString(bag1.difference(null).toArray()));
+                    System.out.print("Result of Difference from the second bag to the first: ");
+                    System.out.println(Arrays.toString(bag2.difference(null).toArray()));
+                }
+                // check to see if the user wishes to terminate the program.
+                else if (choice2 == 7)
                 {
                     bag1.clear();
                     bag2.clear();
@@ -190,7 +206,8 @@ public class BagDriver
                 System.out.println("(3) Test Case #3: Two of the Same Bags #2");
                 System.out.println("(4) Test Case #4: Two Distinct Bags");
                 System.out.println("(5) Test Case #5: Two Empty Bags");
-                System.out.println("(6) Exit the Program");
+                System.out.println("(6) Test Case #6: Null Bags");
+                System.out.println("(7) Exit the Program");
                 choice2 = keyboard.nextInt();
                 // clear the buffer.
                 keyboard.nextLine();
@@ -316,8 +333,22 @@ public class BagDriver
                     System.out.print("Result of Difference from the second bag to the first: ");
                     System.out.println(Arrays.toString(bag4.difference(bag3).toArray()));
                 }
-                // check to see if the user wishes to terminate the program.
                 else if (choice2 == 6)
+                {
+                    bag3.clear();
+                    bag4.clear();
+
+                    System.out.print("Result of Union: ");
+                    System.out.println(Arrays.toString(bag3.union(null).toArray()));
+                    System.out.print("Result of Intersection: ");
+                    System.out.println(Arrays.toString(bag3.intersection(null).toArray()));
+                    System.out.print("Result of Difference from the first bag to the second: ");
+                    System.out.println(Arrays.toString(bag3.difference(null).toArray()));
+                    System.out.print("Result of Difference from the second bag to the first: ");
+                    System.out.println(Arrays.toString(bag4.difference(null).toArray()));
+                }
+                // check to see if the user wishes to terminate the program.
+                else if (choice2 == 7)
                 {
                     bag3.clear();
                     bag4.clear();
