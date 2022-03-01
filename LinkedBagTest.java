@@ -1,14 +1,14 @@
 import org.junit.jupiter.api.Test;
-
 import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-class LinkedBagTest {
+class LinkedBagTest 
+{
     BagInterface <String> bag1 = new LinkedBag<>();
     BagInterface <String> bag2 = new LinkedBag<>();
     @Test
-    void union() {
+    void union() 
+    {
         bag1.add("A");
         bag1.add("B");
         bag1.add("C");
@@ -20,7 +20,8 @@ class LinkedBagTest {
     }
 
     @Test
-    void intersection() {
+    void intersection() 
+    {
         bag1.add("A");
         bag1.add("B");
         bag1.add("C");
@@ -32,7 +33,8 @@ class LinkedBagTest {
     }
 
     @Test
-    void difference() {
+    void difference() 
+    {
         bag1.add("A");
         bag1.add("B");
         bag1.add("C");
@@ -47,13 +49,15 @@ class LinkedBagTest {
     }
 
     @Test
-    void add() {
+    void add() 
+    {
         bag1.add("A");
         System.out.println(Arrays.toString(bag1.toArray())); //Prints [A]
     }
 
     @Test
-    void remove() {
+    void remove() 
+    {
         bag1.add("A");
         bag1.add("B");
         bag1.remove("A");
@@ -61,7 +65,8 @@ class LinkedBagTest {
     }
 
     @Test
-    void testRemove() {
+    void testRemove() 
+    {
         bag1.add("A");
         bag1.add("B");
         bag1.remove();
@@ -69,14 +74,17 @@ class LinkedBagTest {
     }
 
     @Test
-    void isEmpty() {
-        if(bag1.isEmpty()){
+    void isEmpty() 
+    {
+        if (bag1.isEmpty())
+        {
             System.out.println("bag is empty");
         }
     }
 
     @Test
-    void getCurrentSize() {
+    void getCurrentSize() 
+    {
         bag1.add("A");
         bag1.add("B");
         bag1.add("C");
@@ -85,7 +93,8 @@ class LinkedBagTest {
     }
 
     @Test
-    void clear() {
+    void clear() 
+    {
         bag1.add("A");
         bag1.add("B");
         bag1.add("C");
@@ -97,7 +106,8 @@ class LinkedBagTest {
     }
 
     @Test
-    void getFrequencyOf() {
+    void getFrequencyOf() 
+    {
         bag1.add("A");
         bag1.add("A");
         bag1.add("B");
@@ -106,15 +116,18 @@ class LinkedBagTest {
     }
 
     @Test
-    void contains() {
+    void contains() 
+    {
         bag1.add("A");
-        if(bag1.contains("A")){
+        if (bag1.contains("A"))
+        {
             System.out.println("Bag1 Contains Entry A");
         }
     }
 
     @Test
-    void toArray() {
+    void toArray() 
+    {
         bag1.add("A");
         bag1.add("B");
         bag1.add("C");
@@ -123,5 +136,4 @@ class LinkedBagTest {
         bag1.add("F");
         System.out.println(Arrays.toString(bag1.toArray())); //Prints [A, B, C, D, E, F]
     }
-
-}
+} // end of "LinkedBagTest"
