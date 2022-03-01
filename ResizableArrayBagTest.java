@@ -1,14 +1,15 @@
 import org.junit.jupiter.api.Test;
-
 import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-class ResizableArrayBagTest {
+class ResizableArrayBagTest 
+{
     BagInterface <String> bag1 = new ResizableArrayBag <>();
     BagInterface <String> bag2 = new ResizableArrayBag <>();
+    
     @Test
-    void union() {
+    void union() 
+    {
         bag1.add("A");
         bag1.add("B");
         bag1.add("C");
@@ -20,7 +21,8 @@ class ResizableArrayBagTest {
     }
 
     @Test
-    void intersection() {
+    void intersection() 
+    {
         bag1.add("A");
         bag1.add("B");
         bag1.add("C");
@@ -32,7 +34,8 @@ class ResizableArrayBagTest {
     }
 
     @Test
-    void difference() {
+    void difference() 
+    {
         bag1.add("A");
         bag1.add("B");
         bag1.add("C");
@@ -47,7 +50,8 @@ class ResizableArrayBagTest {
     }
 
     @Test
-    void getCurrentSize() {
+    void getCurrentSize() 
+    {
         bag1.add("A");
         bag1.add("B");
         bag1.add("C");
@@ -57,20 +61,24 @@ class ResizableArrayBagTest {
     }
 
     @Test
-    void isEmpty() {
-        if(bag1.isEmpty()){
+    void isEmpty() 
+    {
+        if (bag1.isEmpty())
+        {
             System.out.println("bag is empty");
         }
     }
 
     @Test
-    void add() {
+    void add() 
+    {
         bag1.add("A");
         System.out.println(Arrays.toString(bag1.toArray())); //Prints [A]
     }
 
     @Test
-    void remove() {
+    void remove() 
+    {
         bag1.add("A");
         bag1.add("B");
         bag1.remove("A");
@@ -78,7 +86,8 @@ class ResizableArrayBagTest {
     }
 
     @Test
-    void testRemove() {
+    void testRemove() 
+    {
         bag1.add("A");
         bag1.add("B");
         bag1.remove();
@@ -86,7 +95,8 @@ class ResizableArrayBagTest {
     }
 
     @Test
-    void clear() {
+    void clear() 
+    {
         bag1.add("A");
         bag1.add("B");
         bag1.add("C");
@@ -98,7 +108,8 @@ class ResizableArrayBagTest {
     }
 
     @Test
-    void getFrequencyOf() {
+    void getFrequencyOf() 
+    {
         bag1.add("A");
         bag1.add("A");
         bag1.add("B");
@@ -107,15 +118,18 @@ class ResizableArrayBagTest {
     }
 
     @Test
-    void contains() {
+    void contains() 
+    {
         bag1.add("A");
-        if(bag1.contains("A")){
+        if (bag1.contains("A"))
+        {
             System.out.println("Bag1 Contains Entry A");
         }
     }
 
     @Test
-    void toArray() {
+    void toArray() 
+    {
         bag1.add("A");
         bag1.add("B");
         bag1.add("C");
@@ -124,4 +138,4 @@ class ResizableArrayBagTest {
         bag1.add("F");
         System.out.println(Arrays.toString(bag1.toArray())); // Prints [A, B, C, D, E, F]
     }
-}
+} // end of "ResizableArrayBagTest"
